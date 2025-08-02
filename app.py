@@ -177,6 +177,19 @@ if st.button("Generate Synthetic Data"):
     ax6.pie(payment_counts, labels=payment_counts.index, autopct='%1.1f%%', startangle=90)
     ax6.axis('equal')  # Equal aspect ratio makes the pie chart circular
     st.pyplot(fig6)
+    
+    st.subheader("📦 Most Frequently Bought Products")
+
+    # Get top 10 products by purchase count
+    top_products = transactions_df['product'].value_counts().head(10)
+
+    # Plot bar chart
+    fig7, ax7 = plt.subplots()
+    sns.barplot(x=top_products.values, y=top_products.index, ax=ax7, palette="coolwarm")
+    ax7.set_xlabel("Number of Purchases")
+    ax7.set_ylabel("Product")
+    st.pyplot(fig7)
+
 
 
 
