@@ -67,6 +67,19 @@ if st.button("Generate Synthetic Data"):
 
     st.subheader("Preview - Transactions")
     st.dataframe(transactions_df.head())
+    
+    st.subheader("📊 Filter Transactions by Category")
+
+    # Dropdown to select category
+    selected_category = st.selectbox("Choose a category", transactions_df["category"].unique())
+
+    # Filter the dataframe
+    filtered_df = transactions_df[transactions_df["category"] == selected_category]
+
+    # Display filtered results
+    st.write(f"Showing {len(filtered_df)} transactions for category: **{selected_category}**")
+    st.dataframe(filtered_df)
+
 
     # Download buttons
     st.download_button("📥 Download Users CSV", users_df.to_csv(index=False), "users.csv", "text/csv")
