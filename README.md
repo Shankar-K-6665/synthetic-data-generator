@@ -43,7 +43,7 @@ streamlit run app.py
 
 ## 🌍 Live Demo
 
-[👉 Click here to open the app](https://yourname.streamlit.app)
+[👉 Click here to open the app](https://shankar-k-6665-synthetic-data-generator.streamlit.app)
 
 ---
 
