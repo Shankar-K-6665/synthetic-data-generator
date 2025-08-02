@@ -104,7 +104,15 @@ if st.button("Generate Synthetic Data"):
 
     st.write(f"📊 Total Transactions: {len(date_filtered_df)} from {start_date} to {end_date}")
     st.dataframe(date_filtered_df)
-
+    
+    # ⬇️ Download button for filtered transactions
+    csv = date_filtered_df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="📥 Download Filtered Transactions CSV",
+        data=csv,
+        file_name='filtered_transactions.csv',
+        mime='text/csv'
+    )
 
 
     # Download buttons
