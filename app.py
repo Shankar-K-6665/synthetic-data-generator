@@ -189,6 +189,16 @@ if st.button("Generate Synthetic Data"):
     ax7.set_xlabel("Number of Purchases")
     ax7.set_ylabel("Product")
     st.pyplot(fig7)
+    
+    st.subheader("📈 Quantity vs. Amount Spent")
+
+    # Create a scatter plot
+    fig8, ax8 = plt.subplots()
+    sns.scatterplot(data=transactions_df, x='quantity', y='amount', hue='category', ax=ax8)
+    ax8.set_xlabel("Quantity Purchased")
+    ax8.set_ylabel("Amount Spent (₹)")
+    st.pyplot(fig8)
+
 
 
 
