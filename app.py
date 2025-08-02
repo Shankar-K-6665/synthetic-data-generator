@@ -79,6 +79,32 @@ if st.button("Generate Synthetic Data"):
     # Display filtered results
     st.write(f"Showing {len(filtered_df)} transactions for category: **{selected_category}**")
     st.dataframe(filtered_df)
+    
+    st.subheader("📅 Filter by Date Range")
+
+    # Make sure transaction_date is datetime
+    transactions_df['transaction_date'] = pd.to_datetime(transactions_df['transaction_date'])
+
+    # Date input (min/max from data)
+    min_date = transactions_df['transaction_date'].min()
+    max_date = transactions_df['transaction_date'].max()
+
+    start_date, end_date = st.date_input(
+        "Select a date range",
+        value=[min_date, max_date],
+        min_value=min_date,
+        max_value=max_date
+    )
+
+    # Filter by date
+    date_filtered_df = transactions_df[
+        (transactions_df['transaction_date'] >= pd.to_datetime(start_date)) &
+        (transactions_df['transaction_date'] <= pd.to_datetime(end_date))
+    ]
+
+    st.write(f"📊 Total Transactions: {len(date_filtered_df)} from {start_date} to {end_date}")
+    st.dataframe(date_filtered_df)
+
 
 
     # Download buttons
@@ -98,13 +124,18 @@ if st.button("Generate Synthetic Data"):
     ax2.axis('equal')
     st.pyplot(fig2)
 
-    st.subheader("📈 Daily Sales Trend")
-    transactions_df['transaction_date'] = pd.to_datetime(transactions_df['transaction_date'])
-    daily_sales = transactions_df.groupby('transaction_date')['amount'].sum()
-    fig3, ax3 = plt.subplots()
-    daily_sales.plot(ax=ax3, marker='o', color='green')
-    ax3.set_ylabel("Amount (₹)")
-    st.pyplot(fig3)
+    st.subheader("📈 Daily Sales Trend (Filtered)")
+
+    if not date_filtered_df.empty:
+        daily_sales = date_filtered_df.groupby('transaction_date')['amount'].sum()
+        fig3, ax3 = plt.subplots()
+        daily_sales.plot(ax=ax3, marker='o', color='green')
+        ax3.set_ylabel("Amount (₹)")
+        ax3.set_xlabel("Date")
+        st.pyplot(fig3)
+    else:
+        st.warning("No transactions found in the selected date range.")
+
     
     st.subheader("📉 Transaction Amount Distribution")
     fig4, ax4 = plt.subplots()
