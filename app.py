@@ -166,5 +166,17 @@ if st.button("Generate Synthetic Data"):
     ax5.set_xlabel("Total Spent (₹)")
     ax5.set_ylabel("User")
     st.pyplot(fig5)
+    
+    st.subheader("💳 Payment Method Breakdown")
+
+    # Count transactions per payment method
+    payment_counts = transactions_df['payment_method'].value_counts()
+
+    # Create a pie chart
+    fig6, ax6 = plt.subplots()
+    ax6.pie(payment_counts, labels=payment_counts.index, autopct='%1.1f%%', startangle=90)
+    ax6.axis('equal')  # Equal aspect ratio makes the pie chart circular
+    st.pyplot(fig6)
+
 
 
