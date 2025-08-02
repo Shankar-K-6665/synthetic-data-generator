@@ -151,4 +151,20 @@ if st.button("Generate Synthetic Data"):
     ax4.set_xlabel("Amount (₹)")
     ax4.set_ylabel("Number of Transactions")
     st.pyplot(fig4)
+    
+    st.subheader("🏆 Top 5 High-Spending Users")
+
+    # Group by user and sum amount
+    top_users = transactions_df.groupby('user_id')['amount'].sum().nlargest(5).reset_index()
+
+    # Merge with users_df to get names
+    top_users = top_users.merge(users_df[['user_id', 'name']], on='user_id')
+
+    # Plot
+    fig5, ax5 = plt.subplots()
+    sns.barplot(x='amount', y='name', data=top_users, ax=ax5, palette="viridis")
+    ax5.set_xlabel("Total Spent (₹)")
+    ax5.set_ylabel("User")
+    st.pyplot(fig5)
+
 
