@@ -34,7 +34,8 @@ A Streamlit-based web app to generate synthetic users and transaction data — p
 ## 💻 Run This App Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/synthetic-data-generator.git
+git clone https://github.com/Shankar-K-6665/synthetic-data-generator.git
+
 cd synthetic-data-generator
 pip install -r requirements.txt
 streamlit run app.py
