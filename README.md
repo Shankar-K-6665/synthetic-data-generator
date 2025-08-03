@@ -42,9 +42,9 @@ streamlit run app.py
 
 ---
 
-## 🌍 Live Demo
+## 🌐 Live Demo
 
-[👉 Click here to open the app](https://shankar-k-6665-synthetic-data-generator.streamlit.app)
+👉 [Click here to open the app](https://synthetic-data-generator-ddhwd3m5jbvtglrgxqrjex.streamlit.app/)
 
 ---
 
